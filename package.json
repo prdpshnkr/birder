@@ -1,0 +1,25 @@
+{
+  "name": "birder",
+  "version": "1.0.0",
+  "description": "WebApp for Bird watchers",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "concurrently \"nodemon index.js\" \"npm start --prefix=client\""
+  },
+  "keywords": [
+    "birder",
+    "bird",
+    "watching",
+    "birding"
+  ],
+  "author": "Pradeep S, Rajneesh",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^4.1.1",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongoose": "^5.6.1"
+  }
+}
