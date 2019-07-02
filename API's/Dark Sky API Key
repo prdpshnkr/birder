@@ -1,0 +1,5 @@
+DARK SKY
+
+proxy           : https://cors-anywhere.herokuapp.com/
+url             : https://api.darksky.net/forecast/02727ce2d2a70a3a97809cfbb2df1599/37.8267,-122.4233
+Key             : 02727ce2d2a70a3a97809cfbb2df1599
