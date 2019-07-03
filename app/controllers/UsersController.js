@@ -28,8 +28,8 @@ router.post('/login', function (req, res) {
       // res.send(user)
     })
     .then(function (token) {
-      res.setHeader('x-auth', token).send({})
-      // res.send({ token })
+      // res.setHeader('x-auth', token).send({})
+      res.send({ token })
     })
     .catch(function (err) {
       res.send(err)

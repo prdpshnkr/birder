@@ -26,16 +26,15 @@ class Register extends React.Component {
       password: this.state.password
     }
 
-    // axios.post('http://dct-user-auth.herokuapp.com/users/register', formData)
-    //   .then(response => {
-    //     // console.log(response.data)
-    //     if (response.data.errors) {
-    //       alert(response.data.message)
-    //     } else {
-    //       this.props.history.push('/users/login')
-    //     }
-    //   })
-
+    axios.post('https://birder-app.herokuapp.com/users/register', formData)
+      .then(response => {
+        if (response.data.errors) {
+          alert(response.data.message)
+        }
+        else {
+          this.props.history.push('/users/login')
+        }
+      })
   }
 
   render() {

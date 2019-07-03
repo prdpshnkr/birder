@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Link, Switch } from 'react-router-dom'
 
 import Register from './components/users/Register'
 import Login from './components/users/Login'
-// import Account from './components/users/Account'
+import Account from './components/users/Account'
 // import Logout from './components/users/Logout'
 // import Profile from './components/users/Profile'
 // import ShowPost from './components/users/ShowPost'
@@ -25,6 +25,7 @@ class App extends Component {
             <>
               <Route path="/users/register" component={Register} />
               <Route path="/users/login" component={Login} />
+              <Route path="/users/account" component={Account} />
             </>
           </Switch>
         </div>
