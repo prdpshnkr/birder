@@ -15,6 +15,7 @@ const userSchema = new Schema({
     type: String,
     required: true,
     unique: true,
+    // check format of email
     validate: {
       validator: function (value) {
         return validator.isEmail(value)
@@ -44,7 +45,7 @@ const userSchema = new Schema({
 })
 
 
-// own static method 
+// findByCredentials - own static method (for password encryption)
 userSchema.statics.findByCredentials = function (email, password) {
   const User = this
   return User.findOne({ email })
@@ -112,7 +113,7 @@ userSchema.methods.generateToken = function () {
 }
 
 
-
+// Password Encyption - typically done just about user record is getting saved to db
 // pre hooks - Model Middlewares - 
 userSchema.pre('save', function (next) {
   const user = this

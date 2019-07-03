@@ -2,7 +2,6 @@ const { User } = require('../models/User')
 
 const authenticateUser = function (req, res, next) {
   const token = req.header('x-auth')
-  console.log('in middleware', token)
   User.findByToken(token)
     .then(function (user) {
       if (user) {
@@ -12,7 +11,6 @@ const authenticateUser = function (req, res, next) {
       } else {
         res.status('401').send({ notice: 'token not available' })
       }
-
     })
     .catch(function (err) {
       res.status('401').send(err)
