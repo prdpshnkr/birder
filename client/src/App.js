@@ -33,19 +33,11 @@ class App extends Component {
           </ul>
           <Switch>
             <>
-              {_.isEmpty(this.props.user) ? (
-                <>
-                  <Route path="/users/register" component={Register} />
-                  <Route path="/users/login" component={Login} />
-                </>
-              ) : (
-                  <>
-                    <Route path="/users/account" component={Account} />
-                    <Route path="/users/logout" component={Logout} />
-                    <Route path="/users/profile" component={Profile} />
-                  </>
-
-                )}
+              <Route path="/users/register" component={Register} />
+              <Route path="/users/login" component={Login} />
+              <Route path="/users/account" component={Account} />
+              <Route path="/users/logout" component={Logout} />
+              <Route path="/users/profile" component={Profile} />
             </>
           </Switch>
         </div>
