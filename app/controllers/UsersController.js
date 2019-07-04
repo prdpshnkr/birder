@@ -10,9 +10,9 @@ router.post('/register', function (req, res) {
   const user = new User(body)
   user.save()
     .then(function (user) {
-      res.send(user)
+      // res.send(user)
       // res.send({ _id: user._id, username: user.username, email: user.email})
-      // res.send(_.pick(user, ['_id', 'username', 'email', 'createdAT']))
+      res.send(_.pick(user, ['_id', 'username', 'email', 'createdAT']))
     })
     .catch(function (err) {
       res.send(err)
@@ -40,7 +40,8 @@ router.post('/login', function (req, res) {
 // localhost:3000/users/account 
 router.get('/account', authenticateUser, function (req, res) {
   const { user } = req
-  res.send(user)
+  // res.send(user)
+  res.send(_.pick(user, ['_id', 'username', 'email', 'createdAT']))
 })
 
 // localhost:3000/users/logout

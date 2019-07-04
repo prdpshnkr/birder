@@ -26,7 +26,7 @@ class Login extends React.Component {
     // console.log(formData)
     axios.post('https://birder-app.herokuapp.com/users/login', formData)
       .then(response => {
-        console.log(response.data)
+        // console.log(response.data) 
         if (response.data.errors) {
           alert(response.data.errors)
         } else {
