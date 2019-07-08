@@ -1,8 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import { connect } from 'react-redux'
-import { setUser } from '../../actions/user'
-// import { setPosts } from '../../actions/posts'
+import { setUser } from '../../../actions/user'
 
 class Account extends React.Component {
   componentDidMount() {

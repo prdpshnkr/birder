@@ -1,11 +1,10 @@
 import React from 'react'
 import axios from 'axios'
 
-class Register extends React.Component {
+class Login extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      username: '',
       email: '',
       password: ''
     }
@@ -21,18 +20,17 @@ class Register extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault()
     const formData = {
-      username: this.state.username,
       email: this.state.email,
       password: this.state.password
     }
-
-    axios.post('https://birder-app.herokuapp.com/users/register', formData)
+    axios.post('https://birder-app.herokuapp.com/users/login', formData)
       .then(response => {
         if (response.data.errors) {
-          alert(response.data.message)
-        }
-        else {
-          this.props.history.push('/users/login')
+          alert(response.data.errors)
+        } else {
+          const token = response.data.token
+          localStorage.setItem('userAuthToken', token)
+          this.props.history.push('/users/account')
         }
       })
   }
@@ -40,12 +38,8 @@ class Register extends React.Component {
   render() {
     return (
       <div>
-        <h2>Register</h2>
+        <h2>Login</h2>
         <form onSubmit={this.handleSubmit}>
-          <label>
-            username
-            <input type="text" value={this.state.username} name="username" onChange={this.handleChange}></input>
-          </label><br />
           <label>
             email
             <input type="text" value={this.state.email} name="email" onChange={this.handleChange}></input>
@@ -61,4 +55,4 @@ class Register extends React.Component {
   }
 }
 
-export default Register
+export default Login

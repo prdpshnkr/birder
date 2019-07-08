@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import LoginUi from './LoginUi'
 
 class Login extends React.Component {
   constructor(props) {
@@ -23,10 +24,8 @@ class Login extends React.Component {
       email: this.state.email,
       password: this.state.password
     }
-    // console.log(formData)
     axios.post('https://birder-app.herokuapp.com/users/login', formData)
       .then(response => {
-        // console.log(response.data) 
         if (response.data.errors) {
           alert(response.data.errors)
         } else {
@@ -39,20 +38,21 @@ class Login extends React.Component {
 
   render() {
     return (
-      <div>
-        <h2>Login</h2>
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            email
-            <input type="text" value={this.state.email} name="email" onChange={this.handleChange}></input>
-          </label><br />
-          <label>
-            password
-            <input type="password" value={this.state.password} name="password" onChange={this.handleChange}></input>
-          </label><br />
-          <input type="submit"></input>
-        </form>
-      </div>
+      <LoginUi submit={this.handleSubmit} enter={this.handleChange} />
+      // <div>
+      //   <h2>Login</h2>
+      //   <form onSubmit={this.handleSubmit}>
+      //     <label>
+      //       email
+      //       <input type="text" value={this.state.email} name="email" onChange={this.handleChange}></input>
+      //     </label><br />
+      //     <label>
+      //       password
+      //       <input type="password" value={this.state.password} name="password" onChange={this.handleChange}></input>
+      //     </label><br />
+      //     <input type="submit"></input>
+      //   </form>
+      // </div>
     )
   }
 }
