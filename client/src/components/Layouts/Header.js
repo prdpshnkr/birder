@@ -1,58 +1,88 @@
-import React from 'react';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
+import React, { Component, Fragment } from 'react';
+import { BrowserRouter, Link, Switch, Route, NavLink, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux'
+import _ from 'lodash'
 
+import Register from '../../containers/Authentication/Register/Register'
 import Login from '../../containers/Authentication/Login/Login'
+import Account from '../../containers/Authentication/Account/Account'
+import Logout from '../users/Logout'
+import Profile from '../users/Profile'
+import Home from '../../Home';
 
-import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
+import Box from '@material-ui/core/Box';
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
-    flexGrow: 1,
-  },
-}));
+class Header extends Component {
+  render() {
+    return (
+      <Fragment>
+        <BrowserRouter>
+          {_.isEmpty(this.props.user) ? (
+            <div>
+              <Box height='7vh' display="flex" bgcolor="background.paper">
+                <AppBar display="flex" p={1} position="static" color="default">
+                  <Toolbar>
+                    <Box p={1} flexGrow={1}>
+                      <Typography variant="h6">
+                        <NavLink to="/home">eBirder</NavLink>
+                      </Typography>
+                    </Box>
+                    <ButtonGroup variant="contained" color="inherit" aria-label="Full-width contained primary button group">
+                      <Button variant="contained" color="inherit"><Link to="/users/register">Register</Link></Button>
+                      <Button variant="contained" color="inherit"><Link to="/users/login">Login</Link></Button>
+                    </ButtonGroup>
+                  </Toolbar>
+                </AppBar>
 
-export default function ButtonAppBar() {
-  const classes = useStyles();
+              </Box>
+            </div>
+          ) : (
+              <Box display="flex" bgcolor="background.paper">
+                <AppBar display="flex" p={1} position="static" color="default">
+                  <Toolbar>
+                    <Box p={1} flexGrow={1}>
+                      <Typography variant="h6" >
+                        <NavLink to="/home">eBirder</NavLink>
+                      </Typography>
+                    </Box>
+                    <ButtonGroup variant="contained" color="inherit" aria-label="Full-width contained primary button group">
+                      <Button variant="contained" color="inherit"><Link to="/users/account">Account</Link></Button>
+                      <Button variant="contained" color="inherit"><Link to="/users/profile">Profile</Link></Button>
+                      <Button variant="contained" color="inherit"><Link to="/users/logout">Logout</Link></Button>
+                    </ButtonGroup>
+                  </Toolbar>
+                </AppBar>
+              </Box>
+            )}
+          <Switch>
+            <>
+              <Route path="/users/register" component={Register} />
+              <Route path="/users/login" component={Login} />
+              <Route path="/users/account" component={Account} />
+              <Route path="/users/logout" component={Logout} />
+              <Route path="/users/profile" component={Profile} />
+              <Route path="/home" component={Home} />
+              <Route path="/" exact render={() => <Redirect to="/home" />} />
 
-  return (
-    <BrowserRouter>
-      <div className={classes.root}>
-        <AppBar position="static">
-          <Toolbar>
-            <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="Menu">
-              <MenuIcon />
-            </IconButton>
-            <Typography variant="h6" className={classes.title}>
-              eBirder
-          </Typography>
+            </>
+          </Switch>
+        </BrowserRouter>
 
-
-            {/* <Button color="inherit"><NavLink to={{
-              pathname: '/users/register',
-              hash: '#submit',
-              search: '?quick-submit=true'
-            }}>Register</NavLink></Button> */}
-
-
-            {/* <Button color="inherit">Login</Button> */}
-            {/* <Route path="/users/login" component={Login} /> */}
-
-          </Toolbar>
-        </AppBar>
-      </div>
-    </BrowserRouter>
-
-  );
+      </Fragment >
+    );
+  }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+    isAuthenticated: true
+  }
+}
+
+export default connect(mapStateToProps)(Header)

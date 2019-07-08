@@ -1,8 +1,11 @@
-import React from 'react'
+import React, {Fragment, Component} from 'react'
 import axios from 'axios'
 import RegisterUi from './RegisterUi'
+// import Header from '../../../components/Layouts/Header'
+import Footer from '../../../components/Layouts/Footer'
 
-class Register extends React.Component {
+
+class Register extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -40,7 +43,11 @@ class Register extends React.Component {
 
   render() {
     return (
+      <Fragment>
+      {/* <Header /> */}
       <RegisterUi submit={this.handleSubmit} enter={this.handleChange} />
+      <Footer />
+      </Fragment>
       // <div>
       //   <h2>Register</h2>
       //   <form onSubmit={this.handleSubmit}>

@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { Fragment, Component } from 'react'
 import axios from 'axios'
 import LoginUi from './LoginUi'
+import Footer from '../../../components/Layouts/Footer'
 
-class Login extends React.Component {
+class Login extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -38,7 +39,12 @@ class Login extends React.Component {
 
   render() {
     return (
-      <LoginUi submit={this.handleSubmit} enter={this.handleChange} />
+      <Fragment>
+        {/* <Header /> */}
+        <LoginUi submit={this.handleSubmit} enter={this.handleChange} />
+        <Footer />
+      </Fragment>
+
       // <div>
       //   <h2>Login</h2>
       //   <form onSubmit={this.handleSubmit}>
