@@ -3,9 +3,8 @@ import axios from 'axios'
 import { connect } from 'react-redux'
 import { setUser } from '../../../actions/user'
 import Geolocation from '../../HomePageSearch/Geolocation'
-import ReverseGeoCode from '../../HomePageSearch/ReverseGeoCode'
 
-class Account extends React.Component {
+class HotspotsByLocation extends React.Component {
   componentDidMount() {
     axios.get('https://birder-app.herokuapp.com/users/account', {
       headers: {
@@ -27,11 +26,10 @@ class Account extends React.Component {
     return (
       <div>
         <Geolocation />
-        <ReverseGeoCode />
         <h2>User Account</h2>
         <p>{this.props.user.username}</p>
         <p>{this.props.location.coords.longitude}</p>
-        <p>{this.props.address.locData.fullAdress}</p>
+        <p>{this.props.address}</p>
       </div>
     )
   }
@@ -39,10 +37,9 @@ class Account extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user,
     location: state.location,
     address: state.address
   }
 }
 
-export default connect(mapStateToProps)(Account)
+export default connect(mapStateToProps)(HotspotsByLocation)

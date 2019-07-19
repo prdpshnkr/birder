@@ -3,12 +3,6 @@ import { BrowserRouter, Link, Switch, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import _ from 'lodash'
 
-import Register from './Register/Register'
-import Login from './Login/Login'
-import Account from './Account/Account'
-import Logout from '../../components/users/Logout'
-import Profile from '../../components/users/Profile'
-
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -16,11 +10,13 @@ import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Box from '@material-ui/core/Box';
 
-// import HomePageSearch from '../HomePageSearch/HomePageSearch'
-
+import Register from './containers/Authentication/Register/Register'
+import Login from './containers/Authentication/Login/Login'
+import Account from './containers/Authentication/Account/Account'
+import Logout from './containers/Authentication/Logout/Logout'
+import Profile from './components/users/Profile'
 
 class Authentication extends Component {
-
   render() {
     return (
       <Fragment>
@@ -41,7 +37,6 @@ class Authentication extends Component {
                     </ButtonGroup>
                   </Toolbar>
                 </AppBar>
-
               </Box>
             </div>
           ) : (
@@ -72,7 +67,6 @@ class Authentication extends Component {
             </>
           </Switch>
         </BrowserRouter>
-
       </Fragment >
     )
   }

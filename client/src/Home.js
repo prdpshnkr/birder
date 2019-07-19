@@ -3,7 +3,7 @@ import axios from 'axios'
 import { connect } from 'react-redux'
 // import Header from './components/Layouts/Header'
 import Footer from './components/Layouts/Footer'
-import HomePageSearch from './containers/HomePageSearch/HomePageSearch'
+import HomePageSearchUi from './containers/HomePageSearch/HomePageSearchUi'
 
 class Home extends Component {
   componentDidMount() {
@@ -14,7 +14,7 @@ class Home extends Component {
     return (
       <Fragment>
 
-        <HomePageSearch />
+        <HomePageSearchUi />
         <Footer />
       </Fragment>
     )

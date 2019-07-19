@@ -6,7 +6,7 @@ import _ from 'lodash'
 import Register from '../../containers/Authentication/Register/Register'
 import Login from '../../containers/Authentication/Login/Login'
 import Account from '../../containers/Authentication/Account/Account'
-import Logout from '../users/Logout'
+import Logout from '../../containers/Authentication/Logout/Logout'
 import Profile from '../users/Profile'
 import Home from '../../Home';
 
