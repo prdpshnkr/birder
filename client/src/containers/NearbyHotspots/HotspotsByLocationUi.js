@@ -10,6 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
 import HotspotsByLocation from './HotspotsByLocation'
+// import HotspotsSideBarList from './HotspotsSideBarList'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -75,7 +76,8 @@ export default function SignInSide(props) {
             className={classes.submit}
           >
             Explore Current Location
-            </Button>
+          </Button>
+          {/* <HotspotsSideBarList listItemClick={this.listItemClick} filterVenues={this.filterVenues} filteredVenues={this.state.filteredVenues} /> */}
         </div>
       </Grid>
       <Grid item xs={false} sm={4} md={8} className={classes.image}>
