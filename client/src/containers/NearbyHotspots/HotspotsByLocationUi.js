@@ -1,6 +1,4 @@
 import React from 'react';
-import { BrowserRouter, Link, Switch, Route, NavLink, Redirect } from 'react-router-dom';
-
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -11,12 +9,7 @@ import SearchRounded from '@material-ui/icons/SearchRounded';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
-import Geolocation from './Geolocation'
-import ReverseGeoCode from './ReverseGeoCode'
-import CurrentLocation from './CurrentLocation'
-import MapContainer from './MapContainer'
-import DisplayCurentLocationDetails from './DisplayCurentLocationDetails'
-import HotspotsByLocationUi from '../NearbyHotspots/HotspotsByLocationUi'
+import HotspotsByLocation from './HotspotsByLocation'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -29,7 +22,7 @@ const useStyles = makeStyles(theme => ({
     backgroundPosition: 'center',
   },
   paper: {
-    margin: theme.spacing(8, 4),
+    margin: theme.spacing(2, 4),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -52,17 +45,15 @@ export default function SignInSide(props) {
 
   return (
     <Grid container component="main" className={classes.root}>
-      <Geolocation />
-      <ReverseGeoCode />
       <CssBaseline />
       <Grid item xs={12} sm={8} md={4} component={Paper} elevation={6} square>
         <div className={classes.paper}>
-          <Avatar className={classes.avatar}>
+          {/* <Avatar className={classes.avatar}>
             <SearchRounded />
-          </Avatar>
-          <Typography component="h1" variant="h5">
+          </Avatar> */}
+          {/* <Typography component="h1" variant="h5">
             Search for Birding Hotspots
-          </Typography>
+          </Typography> */}
           <form onSubmit={props.submit} className={classes.form} noValidate>
             <TextField onChange={props.enter}
               variant="outlined"
@@ -70,29 +61,26 @@ export default function SignInSide(props) {
               required
               fullWidth
               id="username"
-              label="Search a place for nearby hotspots"
+              label="Search another place"
               name="username"
               autoComplete="username"
               autoFocus
             />
-            <CurrentLocation />
           </form>
-          <DisplayCurentLocationDetails />
           <Button
             type="submit"
             fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
-          ><Link to="/hotspots">Explore Current Location</Link></Button>
+          >
+            Explore Current Location
+            </Button>
         </div>
       </Grid>
       <Grid item xs={false} sm={4} md={8} className={classes.image}>
-        <MapContainer />
+        <HotspotsByLocation />
       </Grid>
-      <Switch>
-        <Route path="/hotspots" component={HotspotsByLocationUi} />
-      </Switch>
     </Grid>
   );
 }

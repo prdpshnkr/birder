@@ -16,6 +16,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Box from '@material-ui/core/Box';
+import Hotspots from '../../Hotspots';
 
 class Header extends Component {
   render() {
@@ -68,7 +69,7 @@ class Header extends Component {
               <Route path="/users/profile" component={Profile} />
               <Route path="/home" component={Home} />
               <Route path="/" exact render={() => <Redirect to="/home" />} />
-
+              <Route path="/hotspots" component={Hotspots} />
             </>
           </Switch>
         </BrowserRouter>

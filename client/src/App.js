@@ -1,9 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
-
 import Header from './components/Layouts/Header'
-import Geolocation from './containers/HomePageSearch/Geolocation'
-import ReverseGeoCode from './containers/HomePageSearch/ReverseGeoCode'
 
 class App extends Component {
 
@@ -11,8 +8,6 @@ class App extends Component {
     return (
       <Fragment>
         <Header />
-        <Geolocation />
-      <ReverseGeoCode />
       </Fragment>
     )
   }

@@ -1,17 +1,16 @@
 import React, { Component, Fragment } from 'react'
 import Footer from './components/Layouts/Footer'
-import HomePageSearchUi from './containers/HomePageSearch/HomePageSearchUi'
+import HotspotsByLocationUi from './containers/NearbyHotspots/HotspotsByLocationUi'
 
-class Home extends Component {
-
+class Hotspots extends Component {
   render() {
     return (
       <Fragment>
-        <HomePageSearchUi />
+        <HotspotsByLocationUi />
         <Footer />
       </Fragment>
     )
   }
 }
 
-export default Home
+export default Hotspots

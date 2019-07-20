@@ -1,45 +1,54 @@
-import React from 'react'
+import React, { Component } from 'react'
 import axios from 'axios'
-import { connect } from 'react-redux'
-import { setUser } from '../../../actions/user'
-import Geolocation from '../../HomePageSearch/Geolocation'
+import './HotspotsByLocation.css'
+import { load_google_maps, load_hotspots } from '../../utils'
 
-class HotspotsByLocation extends React.Component {
+class HotspotsByLocation extends Component {
+
   componentDidMount() {
-    axios.get('https://birder-app.herokuapp.com/users/account', {
-      headers: {
-        'x-auth': localStorage.getItem('userAuthToken')
-      }
-    })
-      .then(response => {
-        const user = response.data
-        this.setState({ user })
-        this.props.dispatch(setUser(user))
-      })
-      .catch(err => {
-        console.log(err)
+    let googleMapsPromise = load_google_maps();
+    let hotspotsPromise = load_hotspots()
+
+
+    Promise.all([
+      googleMapsPromise,
+      hotspotsPromise
+    ])
+      .then(values => {
+        console.log(values)
+        let google = values[0];
+        let hotspots = values[1]
+
+        this.google = google;
+        this.markers = [];
+        this.map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 12,
+          scrollwheel: true,
+          center: { lat: hotspots[0].lat, lng: hotspots[0].lng }
+        });
+
+        hotspots.forEach(hotspot => {
+          let marker = new google.maps.Marker({
+            position: { lat: hotspot.lat, lng: hotspot.lng },
+            map: this.map,
+            hotspot: hotspot,
+            id: hotspot.locID,
+            name: hotspot.locName,
+            animation: google.maps.Animation.DROP
+          });
+
+        })
+
       })
   }
 
   render() {
-    console.log(this.props)
     return (
-      <div>
-        <Geolocation />
-        <h2>User Account</h2>
-        <p>{this.props.user.username}</p>
-        <p>{this.props.location.coords.longitude}</p>
-        <p>{this.props.address}</p>
+      <div id="map">
+
       </div>
     )
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    location: state.location,
-    address: state.address
-  }
-}
-
-export default connect(mapStateToProps)(HotspotsByLocation)
+export default HotspotsByLocation
