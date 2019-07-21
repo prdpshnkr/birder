@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import axios from 'axios'
+import Grid from '@material-ui/core/Grid';
+
 import './HotspotsByLocation.css'
 import { load_google_maps, load_hotspots } from '../../utils'
 import HotspotsSideBarList from './HotspotsSideBarList'
@@ -90,12 +91,18 @@ class HotspotsByLocation extends Component {
 
   render() {
     return (
-      <div>
+      <Grid>
         <div id="map">
 
         </div>
-        <div id="sidebar">
-          {/* <input placeholder="Filtered COntent" value={this.state.query} onChange={(e) => { this.filterVenues(e.target.value) }} />
+        <div>
+        <HotspotsSideBarList listItemClick={this.listItemClick} filterVenues={this.filterVenues} filteredVenues={this.state.filteredVenues} />
+        </div>
+        <div>
+        <input placeholder="Filtered COntent" value={this.state.query} onChange={(e) => { this.filterVenues(e.target.value) }} />
+        </div>
+        {/* <div id="sidebar">
+          <input placeholder="Filtered COntent" value={this.state.query} onChange={(e) => { this.filterVenues(e.target.value) }} />
           <br />
           <br />
           {
@@ -104,10 +111,9 @@ class HotspotsByLocation extends Component {
                 {hotspot.locName}
               </div>
             ))
-          } */}
-          <HotspotsSideBarList listItemClick={this.listItemClick} filterVenues={this.filterVenues} filteredVenues={this.state.filteredVenues} />
-        </div>
-      </div>
+          }
+        </div> */}
+      </Grid>
     )
   }
 }
