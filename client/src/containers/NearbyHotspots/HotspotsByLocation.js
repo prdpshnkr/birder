@@ -92,18 +92,21 @@ class HotspotsByLocation extends Component {
   render() {
     return (
       <Grid>
-        <div id="map">
+        <div>
+          <div id="map">
 
+          </div>
+          <div>
+            <input placeholder="Filtered COntent" value={this.state.query} onChange={(e) => { this.filterVenues(e.target.value) }} />
+          </div>
         </div>
         <div>
-        <HotspotsSideBarList listItemClick={this.listItemClick} filterVenues={this.filterVenues} filteredVenues={this.state.filteredVenues} />
+          <HotspotsSideBarList listItemClick={this.listItemClick} filterVenues={this.filterVenues} filteredVenues={this.state.filteredVenues} />
         </div>
-        <div>
-        <input placeholder="Filtered COntent" value={this.state.query} onChange={(e) => { this.filterVenues(e.target.value) }} />
-        </div>
-        {/* <div id="sidebar">
-          <input placeholder="Filtered COntent" value={this.state.query} onChange={(e) => { this.filterVenues(e.target.value) }} />
-          <br />
+
+        <div id="sidebar-inner">
+          <input placeholder="Filtered Content" value={this.state.query} onChange={(e) => { this.filterVenues(e.target.value) }} />
+          {/* <br />
           <br />
           {
             this.state.filteredVenues && this.state.filteredVenues.length > 0 && this.state.filteredVenues.map((hotspot, index) => (
@@ -111,8 +114,8 @@ class HotspotsByLocation extends Component {
                 {hotspot.locName}
               </div>
             ))
-          }
-        </div> */}
+          } */}
+        </div>
       </Grid>
     )
   }

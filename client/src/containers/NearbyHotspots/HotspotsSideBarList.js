@@ -34,6 +34,7 @@ import Divider from '@material-ui/core/Divider';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -41,6 +42,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
+// import HotspotsByLocation from './HotspotsByLocation'
 
 const StyledTableCell = withStyles(theme => ({
   head: {
@@ -138,25 +140,23 @@ export default function HotspotsSideBarList(props) {
             <Table>
               <TableHead>
                 <TableRow>
-                  {/* <TableCell>Hotspots</TableCell> */}
-                  <StyledTableCell>List of Hotspots Nearby</StyledTableCell>
+                  <StyledTableCell><Typography component="h3" variant="h6">List of Hotspots Nearby</Typography></StyledTableCell>
                 </TableRow>
               </TableHead>
-              {
-                props.filteredVenues && props.filteredVenues.length > 0 && props.filteredVenues.map((hotspot, index) => (
-                  <TableRow><StyledTableCell key={index} className="venue-item" onClick={() => { props.listItemClick(hotspot) }} >
-                    {hotspot.locName}
-                  </StyledTableCell></TableRow>
-                ))
-              }
+              <TableBody>
+                {
+                  props.filteredVenues && props.filteredVenues.length > 0 && props.filteredVenues.map((hotspot, index) => (
+                    <TableRow><StyledTableCell key={index} className="venue-item" onClick={() => { props.listItemClick(hotspot) }} >
+                      {hotspot.locName}
+                    </StyledTableCell></TableRow>
+                  ))
+                }
+              </TableBody>
             </Table>
           </div>
         </div>
       </Grid>
-      {/* <Grid item xs={false} sm={4} md={9} className={classes.image}>
-        <div id="map">
-
-        </div>
+      {/* <Grid >
         <HotspotsByLocation />
       </Grid> */}
     </Grid>
